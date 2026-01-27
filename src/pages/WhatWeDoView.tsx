@@ -34,7 +34,7 @@ export const WhatWeDoView = () => {
                                 <p className="text-gray-600 leading-relaxed mb-6">
                                     {program.desc}
                                 </p>
-                                <Button variant="outline" className="w-full justify-center text-sm" onClick={() => navigate('/donate')}>
+                                <Button variant="outline" className="w-full justify-center text-sm" onClick={() => navigate('/donar')}>
                                     Apoyar este programa <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
                             </div>
