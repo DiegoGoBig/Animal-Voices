@@ -37,9 +37,9 @@ export const SITE_DATA = {
     
     home: {
         hero: {
-            title: "Helping Animals,",
-            titleHighlight: "Building",
-            titleSuffix: "Community",
+            title: "Ayudando Animales,",
+            titleHighlight: "Construyendo",
+            titleSuffix: "Comunidad",
             description: "Cada aporte nos permite rescatar, rehabilitar y dar un hogar a animales vulnerables. Únete a nuestra misión de transformar vidas hoy mismo.",
             bgImage: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&q=80&w=2000",
             mainImage: "https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?q=80&w=1000&auto=format&fit=crop",
