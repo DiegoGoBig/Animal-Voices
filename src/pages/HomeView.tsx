@@ -50,7 +50,7 @@ export const HomeView = () => {
                             </p>
                             
                             <div className="flex flex-wrap items-center gap-4 mb-12">
-                                <Button variant="salmon" onClick={() => navigate('/donate')} className="!px-8 !py-4 text-lg shadow-xl shadow-red-200">
+                                <Button variant="salmon" onClick={() => navigate('/donar')} className="!px-8 !py-4 text-lg shadow-xl shadow-red-200">
                                     Donar Ahora
                                 </Button>
                                 
