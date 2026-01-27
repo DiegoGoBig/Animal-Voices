@@ -29,7 +29,7 @@ export const SITE_DATA = {
     },
     navigation: [
         { id: 'home', label: 'Inicio' },
-        { id: 'que-hacemos', label: 'Qué Hacemos' },
+        { id: 'que-hacemos', label: '¿Qué hacemos?' },
         { id: 'impacto', label: 'Impacto' },
         { id: 'transparencia', label: 'Transparencia' },
         // { id: 'contact', label: 'Contacto' },
