@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Play, Plus, Star, X, PawPrint, Minus, Phone, ArrowRight, Target, List } from 'lucide-react';
-import { Button, SectionHeading } from './components';
-import { SITE_DATA, Page } from './data';
+import { Button, SectionHeading } from '../components';
+import { SITE_DATA } from '../../data';
 
-export const HomeView = ({ setPage }: { setPage: (p: Page) => void }) => {
+export const HomeView = () => {
+    const navigate = useNavigate();
     const [showVideo, setShowVideo] = useState(false);
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
     const { home } = SITE_DATA;
@@ -48,7 +50,7 @@ export const HomeView = ({ setPage }: { setPage: (p: Page) => void }) => {
                             </p>
                             
                             <div className="flex flex-wrap items-center gap-4 mb-12">
-                                <Button variant="salmon" onClick={() => setPage('donate')} className="!px-8 !py-4 text-lg shadow-xl shadow-red-200">
+                                <Button variant="salmon" onClick={() => navigate('/donate')} className="!px-8 !py-4 text-lg shadow-xl shadow-red-200">
                                     Donar Ahora
                                 </Button>
                                 
@@ -198,7 +200,7 @@ export const HomeView = ({ setPage }: { setPage: (p: Page) => void }) => {
                             </div>
 
                             <div className="flex justify-center lg:justify-start">
-                                <Button onClick={() => setPage('what-we-do')} className="!bg-[#1a1a3a] hover:!bg-brand-blue text-white px-8">
+                                <Button onClick={() => navigate('/what-we-do')} className="!bg-[#1a1a3a] hover:!bg-brand-blue text-white px-8">
                                     {home.featureSection.buttonText}
                                 </Button>
                             </div>
@@ -397,29 +399,7 @@ export const HomeView = ({ setPage }: { setPage: (p: Page) => void }) => {
                         ))}
                     </div>
                 </div>
-            </section>
-
-            {/* Mission Preview */}
-            <section className="py-20 bg-gray-50">
-                <div className="container mx-auto px-6 text-center max-w-4xl">
-                    <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
-                        {home.mission.title}
-                    </h2>
-                    <p className="text-xl text-gray-600 leading-relaxed mb-12">
-                        {home.mission.text}
-                    </p>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {home.mission.cards.map((item, i) => (
-                            <div key={i} className="flex flex-col items-center p-6 bg-white rounded-xl hover:shadow-lg transition-all">
-                                <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center text-brand-blue shadow-sm mb-4">
-                                    {item.icon}
-                                </div>
-                                <h3 className="font-bold text-xl text-gray-900">{item.title}</h3>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            </section>         
 
             {/* CTA Banner */}
             <section className="py-20 bg-white">
@@ -430,12 +410,12 @@ export const HomeView = ({ setPage }: { setPage: (p: Page) => void }) => {
                             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
                                 {home.cta.title}
                             </h2>
-                            <p className="text-green-50 text-lg">
+                            <p className="text-blue-50 text-lg">
                                 {home.cta.text}
                             </p>
                         </div>
                         <div className="relative z-10">
-                            <Button variant="white" onClick={() => setPage('donate')} className="!text-brand-green font-bold text-lg px-8">
+                            <Button variant="white" onClick={() => navigate('/donate')} className="!text-brand-green font-bold text-lg px-8">
                                 {home.cta.buttonText}
                             </Button>
                         </div>

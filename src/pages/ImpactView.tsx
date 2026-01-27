@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { SectionHeading, Button } from './components';
-import { SITE_DATA, Page } from './data';
+import { useNavigate } from 'react-router-dom';
+import { SectionHeading, Button } from '../components';
+import { SITE_DATA } from '../../data';
 import { Play, X, PawPrint } from 'lucide-react';
 
-export const ImpactView = ({ setPage }: { setPage: (p: Page) => void }) => {
+export const ImpactView = () => {
+    const navigate = useNavigate();
     const { impact, home } = SITE_DATA;
     const [showVideo, setShowVideo] = useState(false);
 
@@ -56,7 +58,7 @@ export const ImpactView = ({ setPage }: { setPage: (p: Page) => void }) => {
                         </div>
 
                         <div className="flex justify-center lg:justify-start">
-                            <Button onClick={() => setPage('what-we-do')} className="!bg-[#1a1a3a] hover:!bg-brand-blue text-white px-8">
+                            <Button onClick={() => navigate('/what-we-do')} className="!bg-[#1a1a3a] hover:!bg-brand-blue text-white px-8">
                                 {home.featureSection.buttonText}
                             </Button>
                         </div>
@@ -117,7 +119,7 @@ export const ImpactView = ({ setPage }: { setPage: (p: Page) => void }) => {
                         {/* Content Column */}
                         <div className="lg:col-span-7">
                              <p className="text-sm font-bold tracking-widest text-gray-500 uppercase mb-4">{impact.featuredCampaign.tag}</p>
-                             <h2 className="text-4xl lg:text-5xl font-heading font-extrabold text-[#1F3D2B] leading-tight mb-8">
+                             <h2 className="text-4xl lg:text-5xl font-heading font-extrabold text-[#004d60] leading-tight mb-8">
                                 {impact.featuredCampaign.title.split(',')[0]},<br/>
                                 <span className="opacity-90">{impact.featuredCampaign.title.split(',')[1]}</span>
                              </h2>
@@ -137,13 +139,13 @@ export const ImpactView = ({ setPage }: { setPage: (p: Page) => void }) => {
                                      <img src={impact.featuredCampaign.images[2]} alt="Dog eating" className="w-full h-48 object-cover" />
                                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
                                          <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center pl-1 shadow-lg transform group-hover:scale-110 transition-transform">
-                                            <Play className="w-5 h-5 text-[#1F3D2B] fill-current" />
+                                            <Play className="w-5 h-5 text-[#004d60] fill-current" />
                                          </div>
                                      </div>
                                  </div>
                              </div>
 
-                             <Button className="!bg-[#A8C6A5] hover:!bg-[#8DAF8A] !text-[#1F3D2B] !font-bold">
+                             <Button className="!bg-brand-green/50 hover:!bg-brand-green/70 !text-[#004d60] !font-bold">
                                 Más Información
                              </Button>
                         </div>
@@ -199,7 +201,7 @@ export const ImpactView = ({ setPage }: { setPage: (p: Page) => void }) => {
                             <div className="p-8">
                                 <div className="flex justify-between items-start mb-4">
                                     <h4 className="text-2xl font-bold text-gray-900">{story.name}</h4>
-                                    <span className="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">
+                                    <span className="bg-brand-green/10 text-brand-green text-xs font-bold px-3 py-1 rounded-full">
                                         {story.badge}
                                     </span>
                                 </div>

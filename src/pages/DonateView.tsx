@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ShieldCheck } from 'lucide-react';
-import { Button } from './components';
-import { SITE_DATA } from './data';
+import { Button } from '../components';
+import { SITE_DATA } from '../../data';
 
 export const DonateView = () => {
     const [amount, setAmount] = useState<number | null>(50);
@@ -68,7 +68,7 @@ export const DonateView = () => {
                                         onClick={() => { setAmount(amt); setCustomAmount(''); }}
                                         className={`py-4 rounded-xl font-bold border-2 transition-all ${
                                             amount === amt 
-                                            ? 'border-brand-green bg-green-50 text-brand-green' 
+                                            ? 'border-brand-green bg-brand-green/10 text-brand-green' 
                                             : 'border-gray-200 text-gray-600 hover:border-brand-green/50'
                                         }`}
                                     >
@@ -88,7 +88,7 @@ export const DonateView = () => {
                             </div>
                         </div>
 
-                        <Button variant="donate" className="w-full justify-center text-lg py-4 mb-6 shadow-xl shadow-green-200">
+                        <Button variant="donate" className="w-full justify-center text-lg py-4 mb-6 shadow-xl shadow-brand-green/30">
                             Donar {amount ? `$${amount}` : customAmount ? `$${customAmount}` : ''} {frequency === 'monthly' ? 'al Mes' : ''}
                         </Button>
 

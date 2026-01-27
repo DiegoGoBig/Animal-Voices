@@ -1,7 +1,7 @@
 import React from 'react';
 import { Activity, Download } from 'lucide-react';
-import { SectionHeading } from './components';
-import { SITE_DATA } from './data';
+import { SectionHeading } from '../components';
+import { SITE_DATA } from '../../data';
 
 export const TransparencyView = () => {
     const { transparency } = SITE_DATA;

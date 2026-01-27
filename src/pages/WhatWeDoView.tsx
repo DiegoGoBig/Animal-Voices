@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Users } from 'lucide-react';
-import { Button, SectionHeading } from './components';
-import { SITE_DATA, Page } from './data';
+import { Button, SectionHeading } from '../components';
+import { SITE_DATA } from '../../data';
 
-export const WhatWeDoView = ({ setPage }: { setPage: (p: Page) => void }) => {
+export const WhatWeDoView = () => {
+    const navigate = useNavigate();
     const { whatWeDo } = SITE_DATA;
 
     return (
@@ -32,7 +34,7 @@ export const WhatWeDoView = ({ setPage }: { setPage: (p: Page) => void }) => {
                                 <p className="text-gray-600 leading-relaxed mb-6">
                                     {program.desc}
                                 </p>
-                                <Button variant="outline" className="w-full justify-center text-sm" onClick={() => setPage('donate')}>
+                                <Button variant="outline" className="w-full justify-center text-sm" onClick={() => navigate('/donate')}>
                                     Apoyar este programa <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
                             </div>
@@ -46,7 +48,7 @@ export const WhatWeDoView = ({ setPage }: { setPage: (p: Page) => void }) => {
                     <p className="text-gray-600 max-w-2xl mx-auto mb-8">
                         {whatWeDo.volunteer.text}
                     </p>
-                    <Button variant="primary" onClick={() => setPage('contact')}>
+                    <Button variant="primary" onClick={() => navigate('/contact')}>
                         {whatWeDo.volunteer.buttonText}
                     </Button>
                 </div>

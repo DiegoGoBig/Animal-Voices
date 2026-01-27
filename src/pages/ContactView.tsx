@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { Button, SectionHeading } from './components';
-import { SITE_DATA } from './data';
+import { Button, SectionHeading } from '../components';
+import { SITE_DATA } from '../../data';
 
 export const ContactView = () => {
     const { contact, general } = SITE_DATA;

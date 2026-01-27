@@ -29,10 +29,10 @@ export const SITE_DATA = {
     },
     navigation: [
         { id: 'home', label: 'Inicio' },
-        { id: 'what-we-do', label: 'Qué Hacemos' },
-        { id: 'impact', label: 'Impacto' },
-        { id: 'transparency', label: 'Transparencia' },
-        { id: 'contact', label: 'Contacto' },
+        { id: 'que-hacemos', label: 'Qué Hacemos' },
+        { id: 'impacto', label: 'Impacto' },
+        { id: 'transparencia', label: 'Transparencia' },
+        // { id: 'contact', label: 'Contacto' },
     ] as { id: Page; label: string }[],
     
     home: {
