@@ -415,7 +415,7 @@ export const HomeView = () => {
                             </p>
                         </div>
                         <div className="relative z-10">
-                            <Button variant="white" onClick={() => navigate('/donate')} className="!text-brand-green font-bold text-lg px-8">
+                            <Button variant="white" onClick={() => navigate('/donar')} className="!text-brand-green font-bold text-lg px-8">
                                 {home.cta.buttonText}
                             </Button>
                         </div>
