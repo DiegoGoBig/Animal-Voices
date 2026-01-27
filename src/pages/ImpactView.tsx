@@ -182,7 +182,7 @@ export const ImpactView = () => {
                 </div>
 
                 {/* Transformation Stories (Before/After) */}
-                <h3 className="text-2xl font-heading font-bold text-gray-900 mb-8 border-l-4 border-brand-green pl-4">
+                {/* <h3 className="text-2xl font-heading font-bold text-gray-900 mb-8 border-l-4 border-brand-green pl-4">
                     {impact.storiesTitle}
                 </h3>
                 <div className="grid md:grid-cols-2 gap-12">
@@ -210,7 +210,7 @@ export const ImpactView = () => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </div> */}
             </div>
 
             {/* Video Modal */}
