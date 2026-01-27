@@ -42,7 +42,7 @@ export const WhatWeDoView = () => {
                     ))}
                 </div>
 
-                <div className="mt-20 bg-brand-light rounded-3xl p-10 text-center">
+                {/* <div className="mt-20 bg-brand-light rounded-3xl p-10 text-center">
                     <Users className="w-16 h-16 text-brand-blue mx-auto mb-6" />
                     <h2 className="text-3xl font-bold mb-4">{whatWeDo.volunteer.title}</h2>
                     <p className="text-gray-600 max-w-2xl mx-auto mb-8">
@@ -51,7 +51,7 @@ export const WhatWeDoView = () => {
                     <Button variant="primary" onClick={() => navigate('/contact')}>
                         {whatWeDo.volunteer.buttonText}
                     </Button>
-                </div>
+                </div> */}
             </div>
         </div>
     );
