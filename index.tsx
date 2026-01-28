@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import './src/index.css';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
@@ -11,6 +12,9 @@ import { ImpactView } from './src/pages/ImpactView';
 import { TransparencyView } from './src/pages/TransparencyView';
 import { DonateView } from './src/pages/DonateView';
 import { ContactView } from './src/pages/ContactView';
+import { DynamicPageView } from './src/pages/DynamicPageView';
+import { BlogView } from './src/pages/BlogView';
+import { BlogPostView } from './src/pages/BlogPostView';
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -38,6 +42,9 @@ const Layout = () => {
                     <Route path="/transparencia" element={<TransparencyView />} />
                     <Route path="/donar" element={<DonateView />} />
                     <Route path="/contacto" element={<ContactView />} />
+                    <Route path="/blog" element={<BlogView />} />
+                    <Route path="/blog/:slug" element={<BlogPostView />} />
+                    <Route path="/:slug" element={<DynamicPageView />} />
                 </Routes>
             </main>
 

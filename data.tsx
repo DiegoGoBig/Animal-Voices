@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 
 // --- Types ---
-export type Page = 'home' | 'what-we-do' | 'impact' | 'transparency' | 'donate' | 'contact';
+export type Page = 'home' | 'what-we-do' | 'impact' | 'transparency' | 'donate' | 'contact' | 'blog';
 
 // --- Global Site Data ---
 
@@ -32,6 +32,7 @@ export const SITE_DATA = {
         { id: 'que-hacemos', label: '¿Qué hacemos?' },
         { id: 'impacto', label: 'Impacto' },
         { id: 'transparencia', label: 'Transparencia' },
+        { id: 'blog', label: 'Blog' },
         // { id: 'contact', label: 'Contacto' },
     ] as { id: Page; label: string }[],
     
@@ -128,7 +129,7 @@ export const SITE_DATA = {
         },
         blog: {
             title: "Mira Nuestros Últimos Artículos",
-            subtitle: "Mantente informado sobre nuestras actividades, consejos de cuidado y rescates recientes.",
+            subtitle: "Mantente informado sobre nuestras actividades recientes.",
             articles: [
                 {
                     title: "Detrás de Escena: La Vida Diaria de los Rescatistas",
@@ -182,22 +183,26 @@ export const SITE_DATA = {
             {
                 title: "Salud Animal Integral",
                 desc: "Clínica móvil y atención veterinaria para animales en situación de calle y familias de bajos recursos.",
-                image: "https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&fit=crop&q=80&w=800"
+                image: "https://images.unsplash.com/photo-1599443015574-be5fe8a05783?auto=format&fit=crop&q=80&w=800",
+                video: "https://youtu.be/I-jW6vhHbmc"
             },
             {
                 title: "Esterilización Masiva",
                 desc: "La única solución ética a la sobrepoblación. Realizamos jornadas mensuales en zonas vulnerables.",
-                image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=800"
+                image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=800",
+                video: "https://youtu.be/82wqYZIi1k0"
             },
             {
-                title: "Banco de Alimentos",
+                title: "Brigadas de alimentación",
                 desc: "Recolectamos y distribuimos alimento balanceado a refugios aliados y comunitarios.",
-                image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800"
+                image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800",
+                video: "https://youtu.be/V0fKXupDx2M"
             },
             {
                 title: "Educación Comunitaria",
                 desc: "Talleres en escuelas y barrios para fomentar la tenencia responsable y la empatía.",
-                image: "https://images.unsplash.com/photo-1544378730-8b5104b139de?auto=format&fit=crop&q=80&w=800"
+                image: "https://images.unsplash.com/photo-1544378730-8b5104b139de?auto=format&fit=crop&q=80&w=800",
+                video: "https://youtu.be/gSOrFzBp0Ck"
             }
         ],
         volunteer: {
@@ -211,16 +216,16 @@ export const SITE_DATA = {
         title: "Nuestro Impacto",
         subtitle: "Detrás de cada cifra hay una vida salvada. Estos son los rostros de la esperanza.",
         featuredCampaign: {
-            tag: "Campaña de Adopción",
+            tag: "Un final feliz para Pony",
             title: "Donde la Amistad Comienza, una Huella a la Vez",
-            description: "Desde espacios cómodos hasta atención personalizada, nos esforzamos por satisfacer las necesidades únicas de cada huésped peludo.",
-            description2: "Nuestro compromiso con la excelencia va más allá del cuidado básico para enriquecer experiencias que promueven el bienestar físico, mental y emocional.",
+            description: "La historia de Pony te dejará sin palabras. Como él, hay miles de peluditos en Colombia que son abandonados todos los días...",
+            description2: "¡Dona ahora!",
             images: [
                  "https://images.unsplash.com/photo-1544568100-847a948585b9?auto=format&fit=crop&q=80&w=800", // Couple
                  "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=800", // Dog in shelter
                  "https://images.unsplash.com/photo-1597352358327-0402b545d169?auto=format&fit=crop&q=80&w=800" // Dog eating
             ],
-            videoUrl: "https://www.youtube.com/embed/S-6u-oA2T6M?autoplay=1"
+            videoUrl: "https://youtu.be/iHvwBL3uflk"
         },
         successStories: [
             {

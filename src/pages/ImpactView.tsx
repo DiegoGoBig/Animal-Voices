@@ -1,13 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SectionHeading, Button } from '../components';
+import { Check, X, Heart, TrendingUp, Users, Calendar, Tag, Play, PawPrint } from 'lucide-react';
+import { Button, PageHeader } from '../components';
 import { SITE_DATA } from '../../data';
-import { Play, X, PawPrint } from 'lucide-react';
+import { wpService, WPPost } from '../services/wordpress';
 
 export const ImpactView = () => {
     const navigate = useNavigate();
     const { impact, home } = SITE_DATA;
     const [showVideo, setShowVideo] = useState(false);
+    const [stories, setStories] = useState<WPPost[]>([]);
+    const [loadingStories, setLoadingStories] = useState(true);
+
+    const formatDate = (dateString: string) => {
+        return new Date(dateString).toLocaleDateString('es-CO', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    };
+
+    useEffect(() => {
+        const fetchStories = async () => {
+            // Fetch posts with category ID 3 ("Historias")
+            const data = await wpService.getPosts(3, 3);
+            setStories(data);
+            setLoadingStories(false);
+        };
+        fetchStories();
+    }, []);
 
     // Close on Escape key
     useEffect(() => {
@@ -19,12 +40,14 @@ export const ImpactView = () => {
     }, []);
 
     return (
-        <div className="pt-32 lg:pt-44 pb-20">
-            <div className="container mx-auto px-6">
-                <SectionHeading 
-                    title={impact.title} 
-                    subtitle={impact.subtitle}
-                />
+        <div className="pb-20">
+            <PageHeader 
+                title={impact.title} 
+                breadcrumb="IMPACTO"
+                bgImage="https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&q=80&w=1920"
+            />
+            
+            <div className="pt-20 container mx-auto px-6">
 
                 {/* Feature & Impact Section Content (Reused from Home) */}
                 <div className="flex flex-col lg:flex-row items-center gap-12 mb-16">
@@ -58,9 +81,9 @@ export const ImpactView = () => {
                         </div>
 
                         <div className="flex justify-center lg:justify-start">
-                            <Button onClick={() => navigate('/what-we-do')} className="!bg-[#1a1a3a] hover:!bg-brand-blue text-white px-8">
+                            {/* <Button onClick={() => navigate('/what-we-do')} className="!bg-[#1a1a3a] hover:!bg-brand-blue text-white px-8">
                                 {home.featureSection.buttonText}
-                            </Button>
+                            </Button> */}
                         </div>
                     </div>
 
@@ -96,22 +119,22 @@ export const ImpactView = () => {
                 </div>
 
                 {/* Featured Story - "Where Friendships Begin" (Collage Layout) */}
-                <div className="bg-[#FDFBF7] rounded-[3rem] p-8 lg:p-16 mb-24 overflow-hidden relative">
+                <div className="bg-[#FDFBF7] rounded-[3rem] p-8 lg:p-16 mb-24 overflow-hidden relative shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-100 transform hover:scale-[1.01] transition-transform duration-500">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
                         
                         {/* Images Collage Column */}
                         <div className="lg:col-span-5 relative h-[500px] hidden lg:block">
                             {/* Top Image (Couple) */}
-                            <div className="absolute top-0 left-0 w-3/4 h-64 rounded-2xl overflow-hidden shadow-lg z-10">
+                            <div className="absolute top-0 left-0 w-3/4 h-64 rounded-2xl overflow-hidden shadow-2xl z-10 transform -rotate-2 hover:rotate-0 transition-all duration-500">
                                 <img src={impact.featuredCampaign.images[0]} className="w-full h-full object-cover" alt="Couple" />
                             </div>
                             {/* Bottom Left Image (Cage) */}
-                            <div className="absolute bottom-0 left-0 w-3/5 h-56 rounded-2xl overflow-hidden shadow-lg z-20 border-4 border-[#FDFBF7]">
+                            <div className="absolute bottom-0 left-0 w-3/5 h-56 rounded-2xl overflow-hidden shadow-2xl z-20 border-4 border-[#FDFBF7] transform rotate-3 hover:rotate-0 transition-all duration-500">
                                 <img src={impact.featuredCampaign.images[1]} className="w-full h-full object-cover" alt="Shelter" />
                             </div>
                             
                             {/* Paw Icon Decoration */}
-                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#D4E2D4] p-4 rounded-full z-30">
+                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#D4E2D4] p-4 rounded-full z-30 shadow-lg animate-bounce-slow">
                                 <svg className="w-8 h-8 text-[#2F4F38]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm3-3c0 1.1-.9 2-2 2s-2-.9-2-2V9c0-1.1.9-2 2-2s2 .9 2 2v5zm1-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
                             </div>
                         </div>
@@ -135,7 +158,7 @@ export const ImpactView = () => {
                                      </p>
                                  </div>
                                  {/* Interactive Image/Video Block */}
-                                 <div className="relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer" onClick={() => setShowVideo(true)}>
+                                 <div className="relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer transform hover:scale-105 transition-transform duration-300" onClick={() => setShowVideo(true)}>
                                      <img src={impact.featuredCampaign.images[2]} alt="Dog eating" className="w-full h-48 object-cover" />
                                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
                                          <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center pl-1 shadow-lg transform group-hover:scale-110 transition-transform">
@@ -145,8 +168,8 @@ export const ImpactView = () => {
                                  </div>
                              </div>
 
-                             <Button className="!bg-brand-green/50 hover:!bg-brand-green/70 !text-[#004d60] !font-bold">
-                                Más Información
+                             <Button onClick={() => navigate('/donar')}className="!bg-brand-green/50 hover:!bg-brand-green/70 !text-[#004d60] !font-bold shadow-md hover:shadow-lg transition-all">
+                                Dona Ahora !
                              </Button>
                         </div>
                     </div>
@@ -155,62 +178,65 @@ export const ImpactView = () => {
                 {/* Success Stories (Blog Style) */}
                 <div className="mb-24">
                      <h3 className="text-3xl font-heading font-bold text-[#1a1a3a] mb-12 text-center">Historias de Éxito</h3>
-                     <div className="grid md:grid-cols-3 gap-8">
-                        {impact.successStories.map((story, idx) => (
-                            <div key={idx} className="bg-gray-50 rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                                <div className="h-64 overflow-hidden">
-                                    <img 
-                                        src={story.image} 
-                                        alt={story.title} 
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    />
-                                </div>
-                                <div className="p-8">
-                                    <h3 className="text-xl font-bold text-[#1a1a3a] mb-4 leading-tight font-heading">
-                                        {story.title}
-                                    </h3>
-                                    <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                                        {story.excerpt}
-                                    </p>
-                                    <Button variant="salmon" className="!px-6 !py-2 !text-sm !font-bold">
-                                        Leer Historia
-                                    </Button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                     
+                     {loadingStories ? (
+                         <div className="grid md:grid-cols-3 gap-8">
+                             {[1, 2, 3].map(i => (
+                                 <div key={i} className="bg-gray-100 rounded-[2rem] h-96 animate-pulse"></div>
+                             ))}
+                         </div>
+                     ) : (
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {stories.map((post) => {
+                                const imageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url 
+                                    || "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800";
+                                
+                                const category = post._embedded?.['wp:term']?.[0]?.[0]?.name || "Historia";
+                                const plainExcerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 100) + '...';
 
-                {/* Transformation Stories (Before/After) */}
-                {/* <h3 className="text-2xl font-heading font-bold text-gray-900 mb-8 border-l-4 border-brand-green pl-4">
-                    {impact.storiesTitle}
-                </h3>
-                <div className="grid md:grid-cols-2 gap-12">
-                    {impact.stories.map((story, idx) => (
-                        <div key={idx} className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                            <div className="grid grid-cols-2 h-64">
-                                <div className="relative">
-                                    <img src={story.imageBefore} alt="Antes" className="w-full h-full object-cover grayscale" />
-                                    <span className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">Antes</span>
-                                </div>
-                                <div className="relative">
-                                    <img src={story.imageAfter} alt="Después" className="w-full h-full object-cover" />
-                                    <span className="absolute bottom-2 left-2 bg-brand-green text-white text-xs px-2 py-1 rounded">Ahora</span>
-                                </div>
-                            </div>
-                            <div className="p-8">
-                                <div className="flex justify-between items-start mb-4">
-                                    <h4 className="text-2xl font-bold text-gray-900">{story.name}</h4>
-                                    <span className="bg-brand-green/10 text-brand-green text-xs font-bold px-3 py-1 rounded-full">
-                                        {story.badge}
-                                    </span>
-                                </div>
-                                <h5 className="text-lg font-semibold text-brand-blue mb-2">{story.title}</h5>
-                                <p className="text-gray-600">{story.desc}</p>
-                            </div>
+                                return (
+                                    <article 
+                                        key={post.id} 
+                                        className="bg-gray-50 rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col h-full"
+                                    >
+                                        <div className="h-64 overflow-hidden relative">
+                                            <img 
+                                                src={imageUrl} 
+                                                alt={post.title.rendered} 
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            />
+                                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-blue flex items-center gap-1 shadow-sm">
+                                                <Tag className="w-3 h-3" />
+                                                {category}
+                                            </div>
+                                        </div>
+                                        <div className="p-8 flex flex-col flex-grow">
+                                            <div className="flex items-center gap-2 text-gray-400 text-xs mb-3">
+                                                <Calendar className="w-3 h-3" />
+                                                {formatDate(post.date)}
+                                            </div>
+
+                                            <h3 
+                                                className="text-xl font-bold text-[#1a1a3a] mb-4 leading-tight font-heading group-hover:text-brand-blue transition-colors"
+                                                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                                            />
+                                            <p className="text-gray-600 mb-6 text-sm leading-relaxed flex-grow">
+                                                {plainExcerpt}
+                                            </p>
+                                            <Button 
+                                                variant="outline" 
+                                                className="w-full justify-center !text-sm hover:bg-brand-blue hover:text-white"
+                                                onClick={() => navigate(`/blog/${post.slug}`)}
+                                            >
+                                                Leer Historia
+                                            </Button>
+                                        </div>
+                                    </article>
+                                );
+                            })}
                         </div>
-                    ))}
-                </div> */}
+                     )}
+                </div>                
             </div>
 
             {/* Video Modal */}
@@ -232,7 +258,7 @@ export const ImpactView = () => {
                         <iframe 
                             width="100%" 
                             height="100%" 
-                            src={impact.featuredCampaign.videoUrl}
+                            src={impact.featuredCampaign.videoUrl.replace('youtu.be/', 'www.youtube.com/embed/').replace('watch?v=', 'embed/')}
                             title="Video de Impacto" 
                             frameBorder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

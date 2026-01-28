@@ -125,8 +125,8 @@ export const Footer = () => {
         </div>
         <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
           <p>
-            &copy; 2024 {general.name} {general.nameHighlight}. Todos los
-            derechos reservados.
+            &copy; 2025 {general.name} {general.nameHighlight}. Todos los
+            derechos reservados. desarrollado por <a href="https://www.gobigagency.co" target="_blank" rel="noopener noreferrer">GoBig Agency</a>
           </p>
         </div>
       </div>

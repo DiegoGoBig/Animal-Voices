@@ -1,14 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Play, Plus, Star, X, PawPrint, Minus, Phone, ArrowRight, Target, List } from 'lucide-react';
+import { Play, Plus, Star, X, PawPrint, Minus, Phone, ArrowRight, Target, List, Calendar, Tag } from 'lucide-react';
 import { Button, SectionHeading } from '../components';
 import { SITE_DATA } from '../../data';
+import { wpService, WPPost } from '../services/wordpress';
 
 export const HomeView = () => {
     const navigate = useNavigate();
     const [showVideo, setShowVideo] = useState(false);
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+    const [posts, setPosts] = useState<WPPost[]>([]);
+    const [loadingPosts, setLoadingPosts] = useState(true);
     const { home } = SITE_DATA;
+
+    const formatDate = (dateString: string) => {
+        return new Date(dateString).toLocaleDateString('es-CO', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    };
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const data = await wpService.getPosts(3);
+            setPosts(data);
+            setLoadingPosts(false);
+        };
+        fetchPosts();
+    }, []);
 
     // Close on Escape key
     useEffect(() => {
@@ -26,7 +46,7 @@ export const HomeView = () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+            <section className="relative h-[100vh] pt-32 pb-20 lg:pt-56 lg:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img 
                         src={home.hero.bgImage} 
@@ -54,12 +74,16 @@ export const HomeView = () => {
                                     Donar Ahora
                                 </Button>
                                 
-                                <button 
-                                    onClick={() => setShowVideo(true)}
-                                    className="w-14 h-14 bg-[#1a1a3a] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform"
-                                >
-                                    <Play className="w-6 h-6 fill-current ml-1" />
-                                </button>
+                                <div className="relative group">
+                                    <span className="absolute inset-0 rounded-full bg-[#1a1a3a] opacity-30 animate-ping group-hover:opacity-50 transition-opacity"></span>
+                                    <button 
+                                        onClick={() => setShowVideo(true)}
+                                        className="relative w-14 h-14 bg-[#1a1a3a] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform"
+                                        aria-label="Ver video"
+                                    >
+                                        <Play className="w-6 h-6 fill-current ml-1" />
+                                    </button>
+                                </div>
                             </div>
 
                             {/* Social Proof Stats */}
@@ -199,8 +223,8 @@ export const HomeView = () => {
                                 </ul>
                             </div>
 
-                            <div className="flex justify-center lg:justify-start">
-                                <Button onClick={() => navigate('/what-we-do')} className="!bg-[#1a1a3a] hover:!bg-brand-blue text-white px-8">
+                            <div className="flex justify-center items-center lg:justify-center">
+                                <Button onClick={() => navigate('/que-hacemos')} className="!bg-[#1a1a3a] hover:!bg-brand-blue text-white px-8">
                                     {home.featureSection.buttonText}
                                 </Button>
                             </div>
@@ -369,55 +393,132 @@ export const HomeView = () => {
             {/* Blog Section */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-6">
-                    <SectionHeading 
-                        title={home.blog.title} 
-                        subtitle={home.blog.subtitle}
-                    />
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                        <div className="text-left">
+                            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#1a1a3a] mb-4">
+                                {home.blog.title}
+                            </h2>
+                            <p className="text-lg text-gray-600 max-w-2xl">
+                                {home.blog.subtitle}
+                            </p>
+                            <div className="h-1 w-20 bg-brand-green mt-4 rounded-full"></div>
+                        </div>
+                        
+                        <Button 
+                            variant="white" 
+                            className="!bg-[#1a1a3a] hover:!bg-brand-blue text-white !px-8 !py-3 shadow-xl border-2 border-gray-100 hover:text-white shrink-0 hidden md:flex"
+                            onClick={() => navigate('/blog')}
+                        >
+                            Visitar Blog <ArrowRight className="w-5 h-5 ml-2" />
+                        </Button>
+                    </div>
 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {home.blog.articles.map((article, idx) => (
-                            <div key={idx} className="bg-gray-50 rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                                <div className="h-64 overflow-hidden">
-                                    <img 
-                                        src={article.image} 
-                                        alt={article.title} 
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    />
-                                </div>
-                                <div className="p-8">
-                                    <h3 className="text-xl font-bold text-[#1a1a3a] mb-4 leading-tight font-heading">
-                                        {article.title}
-                                    </h3>
-                                    <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                                        {article.excerpt}
-                                    </p>
-                                    <Button variant="salmon" className="!px-6 !py-2 !text-sm !font-bold">
-                                        Leer Más
-                                    </Button>
-                                </div>
-                            </div>
-                        ))}
+                    {loadingPosts ? (
+                        <div className="grid md:grid-cols-3 gap-8">
+                           {[1, 2, 3].map(i => (
+                               <div key={i} className="bg-gray-100 rounded-[2rem] h-96 animate-pulse"></div>
+                           ))}
+                        </div>
+                    ) : (
+                        <div className="grid md:grid-cols-3 gap-8 mb-12">
+                            {posts.map((post) => {
+                                const imageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url 
+                                    || "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800";
+                                
+                                // Get first category
+                                const category = post._embedded?.['wp:term']?.[0]?.[0]?.name || "General";
+                                
+                                // Strip HTML tags from excerpt
+                                const plainExcerpt = post.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 100) + '...';
+
+                                return (
+                                    <article 
+                                        key={post.id} 
+                                        className="bg-gray-50 rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col h-full"
+                                    >
+                                        <div className="h-64 overflow-hidden relative">
+                                            <img 
+                                                src={imageUrl} 
+                                                alt={post.title.rendered} 
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            />
+                                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-blue flex items-center gap-1 shadow-sm">
+                                                <Tag className="w-3 h-3" />
+                                                {category}
+                                            </div>
+                                        </div>
+                                        <div className="p-8 flex flex-col flex-grow">
+                                            <div className="flex items-center gap-2 text-gray-400 text-xs mb-3">
+                                                <Calendar className="w-3 h-3" />
+                                                {formatDate(post.date)}
+                                            </div>
+
+                                            <h3 
+                                                className="text-xl font-bold text-[#1a1a3a] mb-4 leading-tight font-heading group-hover:text-brand-blue transition-colors"
+                                                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                                            />
+                                            <p className="text-gray-600 mb-6 text-sm leading-relaxed flex-grow">
+                                                {plainExcerpt}
+                                            </p>
+                                            <Button 
+                                                variant="outline" 
+                                                className="w-full justify-center !text-sm hover:bg-brand-blue hover:text-white"
+                                                onClick={() => navigate(`/blog/${post.slug}`)}
+                                            >
+                                                Leer Artículo
+                                            </Button>
+                                        </div>
+                                    </article>
+                                );
+                            })}
+                        </div>
+                    )}
+                    
+                    {/* Mobile Button */}
+                    <div className="flex justify-center md:hidden">
+                         <Button 
+                            variant="white" 
+                            className="!bg-[#1a1a3a] hover:!bg-brand-blue text-[#fff] !px-10 !py-4 shadow-xl border-2 border-gray-100 hover:border-brand-blue hover:text-white"
+                            onClick={() => navigate('/blog')}
+                        >
+                            Visitar Blog
+                        </Button>
                     </div>
                 </div>
             </section>         
 
             {/* CTA Banner */}
-            <section className="py-20 bg-white">
+            <section className="py-24 bg-white">
                 <div className="container mx-auto px-6">
-                    <div className="bg-brand-green rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center justify-between shadow-xl relative overflow-hidden">
-                        <div className="absolute inset-0 opacity-10 pattern-dots"></div>
-                        <div className="relative z-10 md:w-2/3 mb-8 md:mb-0">
-                            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-                                {home.cta.title}
-                            </h2>
-                            <p className="text-blue-50 text-lg">
-                                {home.cta.text}
-                            </p>
+                    <div className="relative overflow-hidden rounded-3xl shadow-2xl p-10 md:p-20 text-center md:text-left" style={{ background: 'linear-gradient(135deg, #1E40AF 0%, #10B981 100%)' }}>
+                        {/* Decorative Pattern Overlay */}
+                        <div className="absolute inset-0 opacity-10 pointer-events-none">
+                            <svg className="absolute top-0 right-0 w-64 h-64 -mr-16 -mt-16 text-white" fill="currentColor" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="40" />
+                            </svg>
+                            <svg className="absolute bottom-0 left-0 w-48 h-48 -ml-10 -mb-10 text-white" fill="currentColor" viewBox="0 0 100 100">
+                                <rect x="10" y="10" width="80" height="80" rx="20" />
+                            </svg>
                         </div>
-                        <div className="relative z-10">
-                            <Button variant="white" onClick={() => navigate('/donar')} className="!text-brand-green font-bold text-lg px-8">
-                                {home.cta.buttonText}
-                            </Button>
+
+                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div className="max-w-2xl">
+                                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight drop-shadow-md">
+                                    {home.cta.title}
+                                </h2>
+                                <p className="text-blue-50 text-lg md:text-xl font-medium leading-relaxed opacity-90">
+                                    {home.cta.text}
+                                </p>
+                            </div>
+                            <div className="shrink-0">
+                                <Button 
+                                    variant="white" 
+                                    onClick={() => navigate('/donar')} 
+                                    className="!text-brand-blue !font-bold !text-lg !px-10 !py-4 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 transform rounded-full"
+                                >
+                                    {home.cta.buttonText}
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
