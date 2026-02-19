@@ -7,9 +7,18 @@ import {
   MapPin,
   Facebook,
   Instagram,
+  Youtube,
+  Linkedin,
   Twitter,
   ShieldCheck,
 } from "lucide-react";
+
+// TikTok is not available in lucide-react, so we use a custom SVG icon
+const TiktokIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.19 8.19 0 004.79 1.53V6.75a4.85 4.85 0 01-1.02-.06z"/>
+  </svg>
+);
 import { SITE_DATA } from "../../data";
 
 export const Footer = () => {
@@ -44,10 +53,22 @@ export const Footer = () => {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href={general.socials.twitter}
+                href={general.socials.tiktok}
                 className="bg-gray-800 p-2 rounded-full hover:bg-brand-blue transition-colors"
               >
-                <Twitter className="w-5 h-5" />
+                <TiktokIcon className="w-5 h-5" />
+              </a>
+              <a
+                href={general.socials.youtube}
+                className="bg-gray-800 p-2 rounded-full hover:bg-brand-blue transition-colors"
+              >
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a
+                href={general.socials.linkedin}
+                className="bg-gray-800 p-2 rounded-full hover:bg-brand-blue transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -95,8 +116,8 @@ export const Footer = () => {
                 <MapPin className="w-5 h-5 text-brand-green shrink-0" />
                 <span>
                   {general.address}
-                  <br />
-                  {general.city}
+                  {/* <br />
+                  {general.city} */}
                 </span>
               </li>
               <li className="flex items-center gap-3">
@@ -126,7 +147,7 @@ export const Footer = () => {
         <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
           <p>
             &copy; 2025 {general.name} {general.nameHighlight}. Todos los
-            derechos reservados. desarrollado por <a href="https://www.gobigagency.co" target="_blank" rel="noopener noreferrer">GoBig Agency</a>
+            derechos reservados. Desarrollado por <a href="https://www.gobigagency.co" target="_blank" rel="noopener noreferrer">GoBig Agency</a>
           </p>
         </div>
       </div>

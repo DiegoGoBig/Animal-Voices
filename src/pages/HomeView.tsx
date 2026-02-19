@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Play, Plus, Star, X, PawPrint, Minus, Phone, ArrowRight, Target, List, Calendar, Tag } from 'lucide-react';
+import { Play, Plus, Star, X, PawPrint, Minus, Phone, ArrowRight, Target, List, Calendar, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button, SectionHeading } from '../components';
 import { SITE_DATA } from '../../data';
 import { wpService, WPPost } from '../services/wordpress';
@@ -11,7 +11,43 @@ export const HomeView = () => {
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
     const [posts, setPosts] = useState<WPPost[]>([]);
     const [loadingPosts, setLoadingPosts] = useState(true);
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
     const { home } = SITE_DATA;
+
+    // Handle resize
+    useEffect(() => {
+        const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Auto-play carousel
+    useEffect(() => {
+        let interval: NodeJS.Timeout;
+        if (!isPaused) {
+            interval = setInterval(() => {
+                setCurrentIndex((prev) => 
+                    prev === home.testimonials.items.length - (isDesktop ? 2 : 1) ? 0 : prev + 1
+                );
+            }, 5000);
+        }
+        return () => clearInterval(interval);
+    }, [isPaused, isDesktop, home.testimonials.items.length]);
+
+    const nextSlide = () => {
+        setCurrentIndex((prev) => 
+            prev >= home.testimonials.items.length - (isDesktop ? 2 : 1) ? 0 : prev + 1
+        );
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prev) => 
+            prev === 0 ? home.testimonials.items.length - (isDesktop ? 2 : 1) : prev - 1
+        );
+    };
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('es-CO', {
@@ -112,11 +148,16 @@ export const HomeView = () => {
 
                         {/* Right Content */}
                         <div className="w-full lg:w-1/2 relative">
-                            <div className="relative z-10">
+                            <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl">
                                 <img 
                                     src={home.hero.mainImage} 
                                     alt="Hero" 
-                                    className="w-full h-auto object-cover rounded-[3rem] shadow-2xl mask-image-gradient"
+                                    className="w-full h-auto object-cover mask-image-gradient"
+                                />
+                                <img 
+                                    src={home.hero.mainImage2} 
+                                    alt="Hero overlay" 
+                                    className="absolute top-0 left-0 w-full h-full object-cover opacity-80 mix-blend-multiply mask-image-gradient"
                                 />
                             </div>
                             
@@ -263,46 +304,96 @@ export const HomeView = () => {
                 </div>
             </section>
 
+
             {/* Testimonials Section */}
             <section className="py-20 bg-gray-50 overflow-hidden">
                 <div className="container mx-auto px-6">
-                    <div className="grid lg:grid-cols-3 gap-8">
-                        {/* Cards Column - Spans 2 cols */}
-                        <div className="lg:col-span-2 grid md:grid-cols-2 gap-6">
-                            {home.testimonials.items.map((item, idx) => (
-                                <div key={idx} className="bg-red-50 p-8 rounded-3xl relative hover:shadow-lg transition-shadow">
-                                    <div className="flex gap-1 mb-4">
-                                        {[1,2,3,4,5].map(star => (
-                                            <Star key={star} className="w-4 h-4 text-yellow-400 fill-current" />
-                                        ))}
-                                    </div>
-                                    <p className="text-gray-700 mb-6 leading-relaxed text-sm">
-                                        "{item.text}"
-                                    </p>
-                                    <div className="flex items-center gap-4">
-                                        <img src={item.image} alt={item.name} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm" />
-                                        <div>
-                                            <h4 className="font-bold text-gray-900">{item.name}</h4>
-                                            <p className="text-xs text-brand-salmon text-[#E98888] font-semibold">{item.role}</p>
-                                        </div>
-                                    </div>
-                                    <PawPrint className="absolute bottom-6 right-6 text-red-200 w-8 h-8 opacity-50" />
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Text Column - Spans 1 col */}
-                        <div className="flex flex-col justify-center lg:pl-8">
+                    <div className="flex flex-col lg:flex-row gap-12 items-center">
+                         {/* Text Column */}
+                        <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
                             <h2 className="text-3xl lg:text-4xl font-heading font-bold text-[#1a1a3a] mb-6">
                                 {home.testimonials.title}
                             </h2>
                             <p className="text-gray-600 mb-8">
                                 {home.testimonials.description}
                             </p>
-                            <div>
-                                <Button className="!bg-[#1a1a3a] hover:!bg-brand-blue">
+                            <div className="flex gap-4">
+                                <Button 
+                                    className="!bg-[#1a1a3a] hover:!bg-brand-blue"
+                                    onClick={() => navigate('/impacto')}
+                                >
                                     {home.testimonials.buttonText}
                                 </Button>
+                                <div className="flex gap-2">
+                                    <button 
+                                        onClick={prevSlide}
+                                        className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-colors"
+                                        aria-label="Anterior testimonio"
+                                    >
+                                        <ChevronLeft className="w-6 h-6" />
+                                    </button>
+                                    <button 
+                                        onClick={nextSlide}
+                                        className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-colors"
+                                        aria-label="Siguiente testimonio"
+                                    >
+                                        <ChevronRight className="w-6 h-6" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Carousel Column */}
+                        <div 
+                            className="w-full lg:w-2/3 relative"
+                            onMouseEnter={() => setIsPaused(true)}
+                            onMouseLeave={() => setIsPaused(false)}
+                        >
+                            <div className="overflow-hidden rounded-3xl">
+                                <div 
+                                    className="flex transition-transform duration-500 ease-in-out"
+                                    style={{ transform: `translateX(-${currentIndex * (isDesktop ? 50 : 100)}%)` }}
+                                >
+                                    {home.testimonials.items.map((item, idx) => (
+                                        <div 
+                                            key={idx} 
+                                            className="w-full lg:w-1/2 flex-shrink-0 px-3"
+                                        >
+                                            <div className="bg-white p-8 rounded-3xl h-full border border-gray-100 hover:shadow-xl transition-shadow relative">
+                                                <div className="flex gap-1 mb-4">
+                                                    {[1,2,3,4,5].map(star => (
+                                                        <Star key={star} className="w-4 h-4 text-yellow-400 fill-current" />
+                                                    ))}
+                                                </div>
+                                                <p className="text-gray-700 mb-6 leading-relaxed text-sm italic">
+                                                    "{item.text}"
+                                                </p>
+                                                <div className="flex items-center gap-4 mt-auto">
+                                                    <img src={item.image} alt={item.name} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm" />
+                                                    <div>
+                                                        <h4 className="font-bold text-gray-900 text-sm">{item.name}</h4>
+                                                        <p className="text-xs text-brand-salmon text-[#E98888] font-semibold">{item.role}</p>
+                                                    </div>
+                                                </div>
+                                                <PawPrint className="absolute bottom-6 right-6 text-gray-50 w-12 h-12 -z-0" />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            {/* Dots Indicator */}
+                            <div className="flex justify-center gap-2 mt-6 lg:hidden">
+                                {home.testimonials.items.map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setCurrentIndex(idx)}
+                                        className={`w-2 h-2 rounded-full transition-all ${
+                                            currentIndex === idx ? "bg-brand-blue w-6" : "bg-gray-300"
+                                        }`}
+                                        aria-label={`Ir al testimonio ${idx + 1}`}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -341,12 +432,12 @@ export const HomeView = () => {
                                         
                                         <div 
                                             className={`px-6 overflow-hidden transition-all duration-300 ${
-                                                isOpen ? 'max-h-48 pb-6 opacity-100' : 'max-h-0 opacity-0'
+                                                isOpen ? 'max-h-64 pb-6 opacity-100' : 'max-h-0 opacity-0'
                                             }`}
                                         >
-                                            <p className={`leading-relaxed ${isOpen ? 'text-gray-300' : 'text-gray-600'}`}>
+                                            <div className={`leading-relaxed overflow-y-auto max-h-52 pr-2 ${isOpen ? 'text-gray-300' : 'text-gray-600'}`}>
                                                 {item.answer}
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 );
@@ -370,20 +461,26 @@ export const HomeView = () => {
                                     {home.faq.supportCard.text}
                                 </p>
                                 
-                                <div className="bg-white rounded-2xl p-4 flex items-center justify-between shadow-lg transform translate-y-0 hover:-translate-y-1 transition-transform">
+                                <a
+                                    href={`https://wa.me/${home.faq.supportCard.phone}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-white rounded-2xl p-4 flex items-center justify-between shadow-lg transform translate-y-0 hover:-translate-y-1 transition-transform"
+                                >
                                     <div className="flex items-center gap-4">
-                                        <div className="bg-[#1a1a3a] p-3 rounded-xl text-white">
-                                            <Phone className="w-6 h-6" />
+                                        <div className="bg-[#25D366] p-3 rounded-xl text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                                                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.428a.75.75 0 0 0 .957.952l5.416-1.534A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.73 9.73 0 0 1-5.012-1.385l-.36-.214-3.733 1.057 1.032-3.648-.235-.376A9.756 9.756 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+                                            </svg>
                                         </div>
                                         <div>
-                                            <p className="text-xs text-brand-salmon font-bold uppercase tracking-wider">{home.faq.supportCard.cta}</p>
-                                            <p className="font-bold text-gray-900">{home.faq.supportCard.phone}</p>
+                                            <p className="text-xs text-[#25D366] font-bold uppercase tracking-wider">{home.faq.supportCard.cta}</p>
+                                            <p className="font-bold text-gray-900">{home.faq.supportCard.linkText}</p>
                                         </div>
                                     </div>
-                                    <button className="flex items-center gap-1 text-sm font-bold text-[#1a1a3a] hover:text-brand-blue">
-                                        {home.faq.supportCard.linkText} <ArrowRight className="w-4 h-4" />
-                                    </button>
-                                </div>
+                                    <ArrowRight className="w-5 h-5 text-[#1a1a3a]" />
+                                </a>
                             </div>
                         </div>
                     </div>
