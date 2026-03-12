@@ -14,6 +14,8 @@ export const SITE_DATA = {
     general: {
         name: "Animal",
         nameHighlight: "Voices",
+        logo: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Animal-voices-logo-blanco.png",
+        favicon: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/fav-animal-voices.png",
         phone: "+573187025480",
         email: "direccion@avoices.org",
         volunteersEmail: "voluntarios@animalvoices.org",

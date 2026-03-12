@@ -119,13 +119,23 @@ export const Navbar = () => {
             to="/"
             className="flex items-center gap-2 cursor-pointer"
           >
-            <div className="bg-brand-blue p-2 rounded-lg">
+            {/* <div className="bg-brand-blue p-2 rounded-lg">
               <Heart className="text-white w-6 h-6 fill-current" />
             </div>
             <span className="text-2xl font-heading font-bold text-gray-900">
               {general.name}
               <span className="text-brand-green">{general.nameHighlight}</span>
-            </span>
+            </span> */}
+            <img
+              src={general.favicon}
+              alt="Animal Voices Logo"
+              className="h-10 w-auto object-contain"
+            />
+            <img
+              src={general.logo}
+              alt="Animal Voices Logo"
+              className="h-10 w-auto object-contain invert"
+            />
           </Link>
 
           {/* Desktop Nav */}
