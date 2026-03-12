@@ -26,7 +26,7 @@ export const SITE_DATA = {
             tiktok: "https://www.tiktok.com/@fundacionanimalvoices",
             instagram: "https://www.instagram.com/fundacionanimalvoices?igsh=N3Jub3k1djhlNjls&utm_source=qr",
             linkedin: "https://www.linkedin.com/company/fundaci%C3%B3n-animal-voices/",
-            youtube: " https://www.youtube.com/@Fundaci%C3%B3nAnimalVoices"
+            youtube: "https://www.youtube.com/@Fundaci%C3%B3nAnimalVoices/videos"
         }
     },
     navigation: [

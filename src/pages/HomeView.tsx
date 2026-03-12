@@ -7,7 +7,6 @@ import { wpService, WPPost } from '../services/wordpress';
 
 export const HomeView = () => {
     const navigate = useNavigate();
-    const [showVideo, setShowVideo] = useState(false);
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
     const [posts, setPosts] = useState<WPPost[]>([]);
     const [loadingPosts, setLoadingPosts] = useState(true);
@@ -66,14 +65,7 @@ export const HomeView = () => {
         fetchPosts();
     }, []);
 
-    // Close on Escape key
-    useEffect(() => {
-        const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') setShowVideo(false);
-        };
-        window.addEventListener('keydown', handleEsc);
-        return () => window.removeEventListener('keydown', handleEsc);
-    }, []);
+
 
     const toggleFaq = (index: number) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -113,9 +105,9 @@ export const HomeView = () => {
                                 <div className="relative group">
                                     <span className="absolute inset-0 rounded-full bg-[#1a1a3a] opacity-30 animate-ping group-hover:opacity-50 transition-opacity"></span>
                                     <button 
-                                        onClick={() => setShowVideo(true)}
+                                        onClick={() => window.open(SITE_DATA.general.socials.youtube, '_blank')}
                                         className="relative w-14 h-14 bg-[#1a1a3a] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform"
-                                        aria-label="Ver video"
+                                        aria-label="Ver canal de YouTube"
                                     >
                                         <Play className="w-6 h-6 fill-current ml-1" />
                                     </button>
@@ -621,34 +613,7 @@ export const HomeView = () => {
                 </div>
             </section>
 
-            {/* Video Modal */}
-            {showVideo && (
-                <div 
-                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-fade-in"
-                    onClick={() => setShowVideo(false)}
-                >
-                    <button 
-                        className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
-                        onClick={() => setShowVideo(false)}
-                    >
-                        <X className="w-10 h-10" />
-                    </button>
-                    <div 
-                        className="w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative"
-                        onClick={e => e.stopPropagation()}
-                    >
-                        <iframe 
-                            width="100%" 
-                            height="100%" 
-                            src={home.hero.videoUrl}
-                            title="Video de Impacto" 
-                            frameBorder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowFullScreen
-                        ></iframe>
-                    </div>
-                </div>
-            )}
+
         </>
     );
 };
