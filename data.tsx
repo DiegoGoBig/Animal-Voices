@@ -90,73 +90,38 @@ export const SITE_DATA = {
             buttonText: "Ver Más Historias",
             items: [
                 {
-                    name: "Alexander Castiblanco",
-                    role: "Familia de Acogida",
-                    image: "https://randomuser.me/api/portraits/men/45.jpg",
-                    text: "Ver cómo transforman vidas con dedicación es inspirador. La diferencia que hacen en la comunidad es palpable y real. Un orgullo apoyarlos.",
+                    name: "Eduardo Rincón",
+                    role: "Seguidor",
+                    image: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Eduardo-Rincon-.jpeg",
+                    text: "Estoy muy agradecido con Animal Voices. Reconozco su compromiso y esfuerzo por esta noble causa de llegar a zonas con tanta necesidad y atender a estos seres maravillosos. ❤️",
                     rating: 5
                 },
                 {
-                    name: "Fabian",
-                    role: "Voluntario Operativo",
-                    image: "https://randomuser.me/api/portraits/men/32.jpg",
-                    text: "En cada rescate ponemos el alma. No hay mayor satisfacción que ver a un animalito sanar y encontrar un hogar amoroso.",
-                    rating: 5
-                },
-                {
-                    name: "Sandra Moreno",
+                    name: "Carlos Suárez R.",
                     role: "Donante",
-                    image: "https://randomuser.me/api/portraits/women/65.jpg",
-                    text: "Dono con confianza porque veo la transparencia y el amor en cada acción. Animal Voices ha devuelto la esperanza a cientos de peluditos.",
+                    image: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Carlos-Suarez-R.jpeg",
+                    text: "Todo esfuerzo suma para darle a tantos animales abandonados, una segunda oportunidad.",
                     rating: 5
                 },
                 {
-                    name: "Liliana Sandoval",
-                    role: "Aliada Estratégica",
-                    image: "https://randomuser.me/api/portraits/women/24.jpg",
-                    text: "La gestión y responsabilidad que manejan es admirable. Juntos hemos logrado campañas de esterilización que cambian el futuro.",
+                    name: "Fabián Ríos",
+                    role: "Donante",
+                    image: "https://randomuser.me/api/portraits/men/32.jpg",
+                    text: "Pude realizar una donación para apoyar una brigada en La Guajira de la fundación, apadrinando una esterilización. Fue un aporte pequeño, pero hecho con muchas ganas de ayudar. Todo mi respeto y admiración para quienes trabajan todos los días por ellos. 🐾💙",
                     rating: 5
                 },
                 {
-                    name: "Ray Yepes",
-                    role: "Colaborador",
-                    image: "https://randomuser.me/api/portraits/men/86.jpg",
-                    text: "Su labor va más allá del rescate; educan y crean conciencia. Es un honor sumar mi granito de arena a esta causa tan noble.",
+                    name: "Laura Sandoval",
+                    role: "Seguidora",
+                    image: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Laura-Sandoval.jpg",
+                    text: "Je suis une fidèle follower de cette fundation qui amène un très beau travail pour les petits loulous qui ont besoin de nous. Étant si loin, j’aide à transmettre un message de sensibilización pour agrandir cette belle comunidad et pourvoir soutenir leur funcionamiento pendant longtemps!",
                     rating: 5
                 },
                 {
-                    name: "Mauricio Maestre",
-                    role: "Padrino",
-                    image: "https://randomuser.me/api/portraits/men/11.jpg",
-                    text: "Apadrinar un caso difícil y ver su recuperación me llenó el corazón. Animal Voices hace magia con recursos limitados pero amor infinito.",
-                    rating: 5
-                },
-                {
-                    name: "Carlos",
-                    role: "Adoptante",
-                    image: "https://randomuser.me/api/portraits/men/53.jpg",
-                    text: "Gracias a Animal Voices completamos nuestra familia. El proceso fue amoroso y nos guiaron en cada paso de la adaptación.",
-                    rating: 5
-                },
-                {
-                    name: "Angie Estupiñan Latam",
-                    role: "Directora Regional",
-                    image: "https://randomuser.me/api/portraits/women/42.jpg",
-                    text: "Desde LATAM vemos en Animal Voices un modelo a seguir. Su impacto social y compromiso son un referente en la protección animal.",
-                    rating: 5
-                },
-                {
-                    name: "Camila Lugari",
-                    role: "Veterinaria Aliada",
-                    image: "https://randomuser.me/api/portraits/women/33.jpg",
-                    text: "Como profesional, confirmo que siguen los más altos estándares de bienestar. La salud de los animales es siempre su prioridad número uno.",
-                    rating: 5
-                },
-                {
-                    name: "Viviana Tamayo (Gabrica)",
-                    role: "Gerente Gabrica",
-                    image: "https://randomuser.me/api/portraits/women/68.jpg",
-                    text: "En Gabrica compartimos la pasión por las mascotas, y encontrar un aliado como Animal Voices nos impulsa a seguir trabajando por ellos.",
+                    name: "Alexander Castiblanco",
+                    role: "Realizador Audiovisual",
+                    image: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Alexander-Castiblanco-.jpeg",
+                    text: "Siempre he pensado que como seres humanos debemos honrar esas capacidades nuestras de pensar y de sentir, pero también de ser empaticos y no hay mejor manera de expresarlo que ayudando a nuestros hermanos los animales, para mi ayudar a Animal Voices es la oportunidad de poner al servicio de causas justas y sensibles lo que se hacer, me hase feliz y me da plenitud.",
                     rating: 5
                 }
             ]
@@ -345,16 +310,35 @@ export const SITE_DATA = {
         title: "Nuestro Impacto",
         subtitle: "Detrás de cada cifra hay una vida salvada. Estos son los rostros de la esperanza.",
         featuredCampaign: {
-            tag: "Un final feliz para Pony",
-            title: "Donde la Amistad Comienza, una Huella a la Vez",
-            description: "La historia de Pony te dejará sin palabras. Como él, hay miles de peluditos en Colombia que son abandonados todos los días...",
-            description2: "¡Dona ahora!",
-            images: [
-                 "https://images.unsplash.com/photo-1544568100-847a948585b9?auto=format&fit=crop&q=80&w=800", // Couple
-                 "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=800", // Dog in shelter
-                 "https://images.unsplash.com/photo-1597352358327-0402b545d169?auto=format&fit=crop&q=80&w=800" // Dog eating
-            ],
-            videoUrl: "https://youtu.be/iHvwBL3uflk"
+            tag: "Nuestra Presencia",
+            title: "Las huellas que hemos dejado",
+            description: "No llegamos a lugares, llegamos a realidades. Este mapa refleja los territorios que hemos acompañado.",
+            description2: "Estas son algunas voces de rescatistas y voluntarios que han caminado con nosotros. Soñamos con llegar a toda Colombia.",
+            mapImage: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Mapa-de-colombia-copia.png",
+            videoPlaylist: [
+                {
+                    id: 1,
+                    title: "Taganga",
+                    url: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Taganga-.mov",
+                    thumbnail: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/02/IMG-20191113-WA0013.jpg",
+                    duration: "1:24"
+                },
+                {
+                    id: 2,
+                    title: "Providencia y Santa Catalina",
+                    url: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Providencia-y-Santa-Catalina-islas-.mp4",
+                    thumbnail: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/02/IMG-20191113-WA0013.jpg",
+                    duration: "2:15"
+                },
+                {
+                    id: 3,
+                    title: "Tierra Bomba",
+                    url: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Tierra Bomba.MOV",
+                    thumbnail: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/02/IMG-20191113-WA0013.jpg",
+                    duration: "2:36"
+                }
+                
+            ]
         },
         successStories: [
             {
@@ -391,20 +375,63 @@ export const SITE_DATA = {
                 imageAfter: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=800",
                 badge: "En Hogar de Paso"
             }
-        ]
+        ],
+        testimonials: {
+            title: "Testimonios de Impacto",
+            description: "Conoce las historias de quienes han sido parte de nuestra misión y cómo juntos estamos transformando realidades.",
+            items: [
+                {
+                    name: "Eduardo Rincón",
+                    role: "Seguidor",
+                    image: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Eduardo-Rincon-.jpeg",
+                    text: "Estoy muy agradecido con Animal Voices. Reconozco su compromiso y esfuerzo por esta noble causa de llegar a zonas con tanta necesidad y atender a estos seres maravillosos. ❤️",
+                    rating: 5
+                },
+                {
+                    name: "Carlos Suárez R.",
+                    role: "Donante",
+                    image: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Carlos-Suarez-R.jpeg",
+                    text: "Todo esfuerzo suma para darle a tantos animales abandonados, una segunda oportunidad.",
+                    rating: 5
+                },
+                {
+                    name: "Fabián Ríos",
+                    role: "Donante",
+                    image: "https://randomuser.me/api/portraits/men/32.jpg",
+                    text: "Pude realizar una donación para apoyar una brigada en La Guajira de la fundación, apadrinando una esterilización. Fue un aporte pequeño, pero hecho con muchas ganas de ayudar. Todo mi respeto y admiración para quienes trabajan todos los días por ellos. 🐾💙",
+                    rating: 5
+                },
+                {
+                    name: "Laura Sandoval",
+                    role: "Seguidora",
+                    image: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Laura-Sandoval.jpg",
+                    text: "Je suis une fidèle follower de cette fondation qui amène un très beau travail pour les petits loulous qui ont besoin de nous. Étant si loin, j’aide à transmettre un message de sensibilisation pour agrandir cette belle comunidad et pourvoir soutenir leur fonctionnement pendant longtemps!",
+                    rating: 5
+                },
+                {
+                    name: "Alexander Castiblanco",
+                    role: "Realizador Audiovisual",
+                    image: "http://cms.gobigagency.co/animalvoices/wp-content/uploads/sites/2/2026/03/Alexander-Castiblanco-.jpeg",
+                    text: "Siempre he pensado que como seres humanos debemos honrar esas capacidades nuestras de pensar y de sentir, pero también de ser empaticos y no hay mejor manera de expresarlo que ayudando a nuestros hermanos los animales, para mi ayudar a Animal Voices es la oportunidad de poner al servicio de causas justas y sensibles lo que se hacer, me ha e feliz y me da plenitud.",
+                    rating: 5
+                }
+            ]
+        }
     },
 
     transparency: {
         title: "Transparencia",
         subtitle: "La confianza es nuestro activo más valioso. Rendimos cuentas claras sobre cada peso recibido.",
         funds: [
-            { label: "Programas de Salud y Alimento", pct: "75%", color: "bg-brand-green" },
-            { label: "Operaciones y Logística", pct: "15%", color: "bg-brand-blue" },
-            { label: "Administración y Recaudación", pct: "10%", color: "bg-brand-accent" }
+            { label: "Programas educativos de impacto social", pct: "30%", color: "bg-brand-blue" },
+            { label: "Jornadas de esterilización en territorio", pct: "20%", color: "bg-brand-green" },
+            { label: "Atención veterinaria integral", pct: "20%", color: "bg-brand-accent" },
+            { label: "Brigadas de alimento", pct: "10%", color: "bg-brand-blue" },
+            { label: "Costos operativos", pct: "20%", color: "bg-gray-400" }
         ],
         efficiency: {
-            title: "Compromiso de Eficiencia",
-            text: "Por cada $100 donados, $75 van directamente a los animales. Mantenemos nuestros costos administrativos al mínimo gracias al apoyo de voluntarios y pro-bono partners."
+            title: "Compromisos de eficiencia",
+            text: "Distribuimos cada donación de manera responsable para generar impacto real y sostenible en los territorios a los que llegamos. El 80% se destina directamente a nuestros programas de atención y el 20% a costos operativos esenciales."
         },
         reports: [
             { year: 2023, name: "Informe Anual de Gestión", size: "2.4 MB", icon: <BookOpen className="w-6 h-6" /> },
@@ -427,7 +454,7 @@ export const SITE_DATA = {
 
     contact: {
         title: "Contáctanos",
-        subtitle: "¿Tienes preguntas o quieres ser voluntario? Escríbenos.",
-        formSubjects: ["Quiero ser voluntario", "Información sobre donaciones", "Reportar un caso", "Otro"]
+        subtitle: "Escríbenos si quieres conocer sobre nuestra labor, donaciones, brigadas y cómo sumarte al bienestar animal.",
+        formSubjects: ["Alianzas", "Donaciones especiales", "Certificados de donación", "Otro"]
     }
 };

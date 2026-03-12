@@ -18,21 +18,11 @@ export const ContactView = () => {
                             <ul className="space-y-6">
                                 <li className="flex items-start gap-4">
                                     <div className="bg-white p-3 rounded-full text-brand-green shadow-sm">
-                                        <MapPin className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-gray-900">Oficina Principal</p>
-                                        <p className="text-gray-600">{general.address}, {general.officeLocation}<br/>{general.city}</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <div className="bg-white p-3 rounded-full text-brand-green shadow-sm">
                                         <Mail className="w-5 h-5" />
                                     </div>
                                     <div>
                                         <p className="font-bold text-gray-900">Email</p>
-                                        <p className="text-gray-600">{general.email}</p>
-                                        <p className="text-gray-600">{general.volunteersEmail}</p>
+                                        <p className="text-gray-600">direccion@avoices.org</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4">
@@ -41,8 +31,7 @@ export const ContactView = () => {
                                     </div>
                                     <div>
                                         <p className="font-bold text-gray-900">Teléfono</p>
-                                        <p className="text-gray-600">{general.phone}</p>
-                                        <p className="text-sm text-gray-500 mt-1">{general.schedule}</p>
+                                        <p className="text-gray-600">3187025480</p>
                                     </div>
                                 </li>
                             </ul>

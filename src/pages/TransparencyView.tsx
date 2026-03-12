@@ -65,7 +65,10 @@ export const TransparencyView = () => {
                         <p className="text-gray-500 mb-8">
                             Conoce en detalle cómo hemos invertido cada donación y el impacto logrado durante el último año.
                         </p>
-                        <Button className="!rounded-full px-8 !bg-brand-blue text-white shadow-lg shadow-blue-200">
+                        <Button 
+                            className="!rounded-full px-8 !bg-brand-blue text-white shadow-lg shadow-blue-200"
+                            onClick={() => window.open('https://drive.google.com/file/d/1tElslxpAMcfPNllzE78QaqCelyeNP3zH/view?usp=drive_link', '_blank')}
+                        >
                             Descargar PDF <Download className="w-4 h-4 ml-2" />
                         </Button>
                         <span className="text-xs text-gray-400 mt-4">Actualizado: Enero 2025 • 2.4 MB</span>
@@ -83,7 +86,7 @@ export const TransparencyView = () => {
                         <Button 
                             variant="outline" 
                             className="!rounded-full px-8 border-gray-300 group-hover:border-brand-green group-hover:text-brand-green"
-                            onClick={() => navigate('/contacto')}
+                            onClick={() => window.open('https://wa.me/+573187025480', '_blank')}
                         >
                             Solicitar Informes Anteriores
                         </Button>
